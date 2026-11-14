@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Token Radar — the fitted radar</title>
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<header class="masthead">
+  <div class="mast-title">
+    <h1>TOKEN RADAR</h1>
+    <p class="tagline">What a token would be worth, fitted from the market — not guessed from a list.</p>
+  </div>
+  <div class="mast-facts" id="facts"></div>
+</header>
+
+<section class="fitpanel" aria-label="The fitted model">
+  <div class="fit-text">
+    <h2>The model, fitted — not assumed</h2>
+    <p class="formula" id="formula"></p>
+    <p class="fitstats" id="fitstats"></p>
+    <p class="fitnote" id="fitnote"></p>
+  </div>
+  <div class="fit-plot">
+    <canvas id="scatter" width="560" height="260" aria-label="Scatter plot of fitted versus actual market capitalisation"></canvas>
+    <p class="plotcap" id="plotcap"></p>
+  </div>
+</section>
+
+<nav class="controls" aria-label="Board controls">
+  <div class="tabs" id="tabs" role="tablist">
+    <button data-scope="all" class="on" type="button">All 198</button>
+    <button data-scope="watchlist" type="button">Watchlist 40</button>
+    <button data-scope="early" type="button">Early 158</button>
+  </div>
+  <input id="q" type="search" placeholder="Search name or slug…" aria-label="Search protocols">
+  <select id="cat" aria-label="Filter by category"><option value="">All categories</option></select>
+  <select id="chain" aria-label="Filter by chain"><option value="">All chains</option></select>
+  <label class="mintvl">Min TVL $<input id="mintvl" type="number" min="0" step="1000000" placeholder="0" aria-label="Minimum TVL in dollars"></label>
+  <span class="shown" id="shown"></span>
+</nav>
+
+<main>
+  <table id="board">
+    <thead><tr>
+      <th data-sort="rank">#</th>
+      <th data-sort="name">Protocol</th>
+      <th data-sort="category">Category</th>
+      <th data-sort="chain">Chain</th>
+      <th data-sort="tvlUsd" class="num">TVL</th>
+      <th data-sort="change7d" class="num">7d</th>
+      <th data-sort="impliedUsd" class="num">Implied value</th>
+      <th data-sort="multiple" class="num">× TVL</th>
+      <th class="num">Backtest band</th>
+      <th class="num">Farm cost</th>
+    </tr></thead>
+    <tbody id="rows"></tbody>
+  </table>
+  <p class="empty" id="empty" hidden>No protocol matches these filters.</p>
+</main>
+
+<section class="detail" id="detail" hidden></section>
+
+<footer class="method">
+  <h2>Method — read this before trusting a number</h2>
+  <div id="method"></div>
+</footer>
+
+<script src="../data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
